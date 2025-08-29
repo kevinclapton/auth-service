@@ -31,16 +31,21 @@
 Откройте .env и при необходимости измените:
 - POSTGRES_PASSWORD — пароль для PostgreSQL;
 - SECRET_KEY — секретный ключ для JWT (должен быть длинным и случайным).
-Убедитесь, что DATABASE_URL использует тот же пароль:
+- Убедитесь, что DATABASE_URL использует тот же пароль:
+>DATABASE_URL=postgresql+psycopg2://postgres:ВАШ_ПАРОЛЬ@db:5432/fastapi_auth
 
 ## Проверка работы
 
 После запуска сервис предоставляет интерактивную документацию и API для тестирования.
 ### 1. Запустите контейнеры
    ```bash
-   docker-compose up --build # Если необходимо наблюдать за работой контейнеров в реальном времени, либо
-   docker-compose up -d --build # Если требуется запустить контейнеры в фоне и освободить терминал для работы
+   docker-compose up --build
    ```
+   >Если необходимо наблюдать за работой контейнеров в реальном времени, либо
+   ```bash
+   docker-compose up -d --build
+   ```
+   >Если требуется запустить контейнеры в фоне и освободить терминал для работы
 Сервис станет доступен:
 - API: http://127.0.0.1:8000
 - Документация: http://127.0.0.1:8000/docs
@@ -56,8 +61,7 @@
       "password": "securepassword123"
    }
    ```
-- Нажмите Execute
-   Ожидаемый ответ:
+- Нажмите Execute. Ожидаемый ответ:
    ```json
    {
       "message": "Пользователь успешно зарегистрирован",
@@ -66,9 +70,11 @@
    ```
 Проверьте авторизацию созданного пользователя. Для этого:
 - Найдите POST /auth
-- Введите в поле username: testuser, в поле password: securepassword123
-- Нажмите Execute
-   Ожидаемый ответ:
+- Введите в поле username:
+>testuser
+в поле password:
+>securepassword123
+- Нажмите Execute. Ожидаемый ответ:
    ```json
    {
       "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxxxx",
@@ -76,7 +82,10 @@
    }
    ```
 - Нажмите кнопу Authorize в правом верхнем углу страницы
-- В открывшемся окне введите в поле username: testuser, в поле password: securepassword123
+- В открывшемся окне введите в поле username:
+>testuser
+в поле password:
+>securepassword123
 - Нажмите кнопку Authorize. В окне высветится сообщение о произошедшей авторизации. Можете закрыть окно, нажав на кнопку Close
 Проверьте доступ к профилю. Для этого:
 - Найдите GET /profile
@@ -92,14 +101,23 @@
 ## Структура проекта
 
 auth-service/
+
 ├── .env.example          # Шаблон переменных окружения
+
 ├── docker-compose.yml    # Запуск FastAPI + PostgreSQL
+
 ├── Dockerfile            # Сборка FastAPI-образа
+
 ├── requirements.txt      # Зависимости Python
+
 └── app/
+
     ├── __init__.py
+
     ├── main.py           # Основной FastAPI-приложение
+
     ├── database.py       # Модель пользователя и подключение к БД
+
     └── wait_for_db.py    # Скрипт ожидания готовности PostgreSQL
 
 ## Перезапуск с чистой БД
