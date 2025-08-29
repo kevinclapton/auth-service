@@ -41,11 +41,14 @@
    ```bash
    docker-compose up --build
    ```
-   >Если необходимо наблюдать за работой контейнеров в реальном времени, либо
+   >Если необходимо наблюдать за работой контейнеров в реальном времени
+   
+   либо
    ```bash
    docker-compose up -d --build
    ```
    >Если требуется запустить контейнеры в фоне и освободить терминал для работы
+
 Сервис станет доступен:
 - API: http://127.0.0.1:8000
 - Документация: http://127.0.0.1:8000/docs
@@ -72,6 +75,7 @@
 - Найдите POST /auth
 - Введите в поле username:
 >testuser
+
 в поле password:
 >securepassword123
 - Нажмите Execute. Ожидаемый ответ:
@@ -84,9 +88,11 @@
 - Нажмите кнопу Authorize в правом верхнем углу страницы
 - В открывшемся окне введите в поле username:
 >testuser
+
 в поле password:
 >securepassword123
 - Нажмите кнопку Authorize. В окне высветится сообщение о произошедшей авторизации. Можете закрыть окно, нажав на кнопку Close
+
 Проверьте доступ к профилю. Для этого:
 - Найдите GET /profile
 - Нажмите Try it out, затем Execute
@@ -100,25 +106,25 @@
 
 ## Структура проекта
 
-auth-service/
+   auth-service/
 
-├── .env.example          # Шаблон переменных окружения
+   ├── .env.example          # Шаблон переменных окружения
 
-├── docker-compose.yml    # Запуск FastAPI + PostgreSQL
+   ├── docker-compose.yml    # Запуск FastAPI + PostgreSQL
 
-├── Dockerfile            # Сборка FastAPI-образа
+   ├── Dockerfile            # Сборка FastAPI-образа
 
-├── requirements.txt      # Зависимости Python
+   ├── requirements.txt      # Зависимости Python
 
-└── app/
+   └── app/
 
-    ├── __init__.py
+      ├── __init__.py
 
-    ├── main.py           # Основной FastAPI-приложение
+      ├── main.py           # Основной FastAPI-приложение
 
-    ├── database.py       # Модель пользователя и подключение к БД
+      ├── database.py       # Модель пользователя и подключение к БД
 
-    └── wait_for_db.py    # Скрипт ожидания готовности PostgreSQL
+      └── wait_for_db.py    # Скрипт ожидания готовности PostgreSQL
 
 ## Перезапуск с чистой БД
 
