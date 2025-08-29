@@ -76,7 +76,7 @@
 - Введите в поле username:
 >testuser
 
-в поле password:
+   в поле password:
 >securepassword123
 - Нажмите Execute. Ожидаемый ответ:
    ```json
@@ -89,7 +89,7 @@
 - В открывшемся окне введите в поле username:
 >testuser
 
-в поле password:
+   в поле password:
 >securepassword123
 - Нажмите кнопку Authorize. В окне высветится сообщение о произошедшей авторизации. Можете закрыть окно, нажав на кнопку Close
 
@@ -106,25 +106,18 @@
 
 ## Структура проекта
 
-   auth-service/
-
-   ├── .env.example          # Шаблон переменных окружения
-
-   ├── docker-compose.yml    # Запуск FastAPI + PostgreSQL
-
-   ├── Dockerfile            # Сборка FastAPI-образа
-
-   ├── requirements.txt      # Зависимости Python
-
-   └── app/
-
-      ├── __init__.py
-
-      ├── main.py           # Основной FastAPI-приложение
-
-      ├── database.py       # Модель пользователя и подключение к БД
-
-      └── wait_for_db.py    # Скрипт ожидания готовности PostgreSQL
+```text
+auth-service/
+├── .env.example          # Шаблон переменных окружения
+├── docker-compose.yml    # Запуск FastAPI + PostgreSQL
+├── Dockerfile            # Сборка FastAPI-образа
+├── requirements.txt      # Зависимости Python
+└── app/
+   ├── __init__.py
+   ├── main.py            # Основное FastAPI-приложение
+   ├── database.py        # Модель пользователя и подключение к БД
+   └── wait_for_db.py     # Скрипт ожидания готовности PostgreSQL (без него контейнеры Docker взаимодействуют некорректно)
+```
 
 ## Перезапуск с чистой БД
 
